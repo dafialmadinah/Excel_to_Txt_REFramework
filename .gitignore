@@ -1,0 +1,29 @@
+
+################################################################################
+# Added by UiPath Studio
+# Prevent caching and local artifacts from being committed
+################################################################################
+.local
+################################################################################
+# End of UiPath Studio common ignores
+################################################################################
+
+# UiPath local/cache/generated files
+.objects/
+.project/
+.settings/
+.tmh/
+
+# Runtime and test data
+Data/Input/*
+Data/Output/*
+Data/Temp/*
+Exceptions_Screenshots/*
+Tests/Tests.xlsx
+
+# Original configuration
+Data/Config.xlsx
+
+# Local user files
+*.user
+*.local

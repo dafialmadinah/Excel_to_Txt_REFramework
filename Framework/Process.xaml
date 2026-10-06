@@ -1,0 +1,443 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_ReportMappings" Type="InArgument(sd:DataTable)" />
+    <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(sd:DataRow)" />
+    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>818.4,454.4</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="50">
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Windows.Forms</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="80">
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Windows.Forms</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <sap:WorkflowViewStateService.ViewState>
+    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldExpandAll">False</x:Boolean>
+    </scg:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="917.4285714285713,6353.714285714285" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="dtP01Mapping" />
+      <Variable x:TypeArguments="x:String" Name="kodeLembaga" />
+      <Variable x:TypeArguments="x:String" Name="kodeSegmen" />
+      <Variable x:TypeArguments="x:String" Name="kolomOperasi" />
+      <Variable x:TypeArguments="x:String" Name="replaceRule" />
+      <Variable x:TypeArguments="x:Boolean" Name="removeNoColumn" />
+      <Variable x:TypeArguments="x:Boolean" Name="formatSukuBunga" />
+      <Variable x:TypeArguments="x:Boolean" Name="stripMinus" />
+      <Variable x:TypeArguments="x:String" Name="outputFilePath" />
+      <Variable x:TypeArguments="x:Int32" Name="rowCount" />
+      <Variable x:TypeArguments="x:Boolean" Name="isSuccess" />
+      <Variable x:TypeArguments="x:String" Name="errorMessage" />
+      <Variable x:TypeArguments="x:String" Name="filePath" />
+      <Variable x:TypeArguments="x:String" Name="reportCode" />
+      <Variable x:TypeArguments="x:String" Name="reportType" />
+      <Variable x:TypeArguments="x:String" Name="reportDate" />
+      <Variable x:TypeArguments="x:String" Name="switchKey" />
+      <Variable x:TypeArguments="x:String" Name="handler" />
+      <Variable x:TypeArguments="x:String" Name="outputFolder" />
+      <Variable x:TypeArguments="sd:DataRow[]" Name="mappingRows" />
+      <Variable x:TypeArguments="sd:DataRow" Name="mappingRow" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Assign sap:VirtualizedContainerService.HintSize="486.85714285714283,176.57142857142858" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[filePath]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[in_TransactionItem("FilePath").ToString]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="486.85714285714283,176.57142857142858" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[reportCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[in_TransactionItem("ReportCode").ToString]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="486.85714285714283,176.57142857142858" sap2010:WorkflowViewState.IdRef="Assign_3">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[reportType]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[in_TransactionItem("ReportType").ToString]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="486.85714285714283,176.57142857142858" sap2010:WorkflowViewState.IdRef="Assign_5">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[reportDate]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[in_TransactionItem("ReportDate").ToString]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="486.85714285714283,176.57142857142858" sap2010:WorkflowViewState.IdRef="Assign_4">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[switchKey]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[in_TransactionItem("SwitchKey").ToString]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="486.85714285714283,176.57142857142858" sap2010:WorkflowViewState.IdRef="Assign_6">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[handler]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[in_TransactionItem("Handler").ToString]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="486.85714285714283,176.57142857142858" sap2010:WorkflowViewState.IdRef="Assign_7">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[outputFolder]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[in_TransactionItem("OutputFolder").ToString]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="486.85714285714283,176.57142857142858" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;PROCESS START | &quot; &amp;&#xD;&#xA;&quot;File=&quot; &amp; filePath &amp;&#xD;&#xA;&quot; | ReportCode=&quot; &amp; reportCode &amp;&#xD;&#xA;&quot; | ReportType=&quot; &amp; reportType &amp;&#xD;&#xA;&quot; | Handler=&quot; &amp; handler]" />
+    <Assign sap:VirtualizedContainerService.HintSize="486.85714285714283,176.57142857142858" sap2010:WorkflowViewState.IdRef="Assign_8">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sd:DataRow[]">[mappingRows]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sd:DataRow[]" xml:space="preserve">[in_ReportMappings.Select(
+    "Kode = '" &amp; reportCode.Replace("'", "''") &amp;
+    "' AND Tipe = '" &amp; reportType.Replace("'", "''") &amp; "'"
+)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <If Condition="[mappingRows.Length = 0]" sap:VirtualizedContainerService.HintSize="486.85714285714283,2338.285714285714" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484.57142857142856,174.85714285714286" sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Throw Exception="[New UiPath.Core.BusinessRuleException(&#xA;    &quot;Mapping tidak ditemukan untuk &quot; &amp; reportCode &amp; &quot;-&quot; &amp; reportType&#xA;)]" sap:VirtualizedContainerService.HintSize="450.2857142857143,114.85714285714286" sap2010:WorkflowViewState.IdRef="Throw_2" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="484.57142857142856,2023.4285714285713" sap2010:WorkflowViewState.IdRef="Sequence_8">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence sap:VirtualizedContainerService.HintSize="450.2857142857143,1963.4285714285713" sap2010:WorkflowViewState.IdRef="Sequence_9">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="416,176.57142857142858" sap2010:WorkflowViewState.IdRef="Assign_9">
+              <Assign.To>
+                <OutArgument x:TypeArguments="sd:DataRow">[mappingRow]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="sd:DataRow">[mappingRows(0)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="416,176.57142857142858" sap2010:WorkflowViewState.IdRef="Assign_10">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[handler]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[mappingRow("Handler").ToString.Trim]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="416,176.57142857142858" sap2010:WorkflowViewState.IdRef="Assign_11">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[kolomOperasi]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[mappingRow("KolomOperasi").ToString.Trim]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="416,176.57142857142858" sap2010:WorkflowViewState.IdRef="Assign_12">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[replaceRule]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String" xml:space="preserve">[mappingRow("ReplaceFrom").ToString.Trim &amp;
+              "→" &amp;
+              mappingRow("ReplaceTo").ToString.Trim]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="416,176.57142857142858" sap2010:WorkflowViewState.IdRef="Assign_13">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Boolean">[removeNoColumn]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Boolean">[Convert.ToBoolean(mappingRow("RemoveNoColumn"))]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="416,176.57142857142858" sap2010:WorkflowViewState.IdRef="Assign_14">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Boolean">[formatSukuBunga]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Boolean">[Convert.ToBoolean(mappingRow("FormatSukuBunga"))]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="416,176.57142857142858" sap2010:WorkflowViewState.IdRef="Assign_15">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Boolean">[stripMinus]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Boolean">[Convert.ToBoolean(mappingRow("StripMinus"))]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="416,176.57142857142858" sap2010:WorkflowViewState.IdRef="Assign_16">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[kodeLembaga]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String" xml:space="preserve">[If(
+    reportType = "SY",
+    in_Config("KodeLembaga_SY").ToString.Trim.TrimStart("'"c).PadLeft(4, "0"c),
+    in_Config("KodeLembaga_KV").ToString.Trim.TrimStart("'"c).PadLeft(4, "0"c)
+)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="416,176.57142857142858" sap2010:WorkflowViewState.IdRef="Assign_17">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[kodeSegmen]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[in_Config("KodeSegmen").ToString.Trim.TrimStart("'"c)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="416,176.57142857142858" sap2010:WorkflowViewState.IdRef="Assign_18">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[outputFolder]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String" xml:space="preserve">[System.IO.Path.Combine(
+    in_Config("Path_Output_Root").ToString,
+    If(
+        reportType = "SY",
+        in_Config("FolderPrefix_SY").ToString,
+        in_Config("FolderPrefix_KV").ToString
+    ) &amp; DateTime.Now.ToString("ddMMyyyy")
+)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="416,114.85714285714286" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="[outputFolder]" />
+          </Sequence>
+        </Sequence>
+      </If.Else>
+    </If>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="486.85714285714283,176.57142857142858" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;DEBUG REPLACE | reportCode=&quot; &amp; reportCode &amp;&#xA;&quot; | replaceRule=&quot; &amp;&#xA;If(replaceRule Is Nothing, &quot;&lt;NOTHING&gt;&quot;, &quot;[&quot; &amp; replaceRule &amp; &quot;]&quot;)]" />
+    <If Condition="[reportCode = &quot;P01&quot; AndAlso reportType = &quot;SY&quot;]" sap:VirtualizedContainerService.HintSize="486.85714285714283,373.7142857142857" sap2010:WorkflowViewState.IdRef="If_2">
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450.2857142857143,142.85714285714286" sap2010:WorkflowViewState.IdRef="Sequence_10">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:BuildDataTable DataTable="[dtP01Mapping]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="416,82.85714285714286" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;kd_ktrcab&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;awal_norek&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450.2857142857143,90.85714285714286" sap2010:WorkflowViewState.IdRef="Sequence_11">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
+    <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[handler]" sap:VirtualizedContainerService.HintSize="486.85714285714283,1520" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+      <Switch.Default>
+        <Sequence DisplayName="Default" sap:VirtualizedContainerService.HintSize="484.57142857142856,174.85714285714286" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Throw Exception="[New UiPath.Core.BusinessRuleException(&#xA;    &quot;Handler tidak dikenali: &quot; &amp; handler &amp;&#xA;    &quot; untuk file &quot; &amp; filePath&#xA;)]" sap:VirtualizedContainerService.HintSize="450.2857142857143,114.85714285714286" sap2010:WorkflowViewState.IdRef="Throw_1" />
+        </Sequence>
+      </Switch.Default>
+      <Sequence x:Key="ExcelToTxt" DisplayName="Case" sap:VirtualizedContainerService.HintSize="484.57142857142856,841.7142857142857" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450.2857142857143,176.57142857142858" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;CALL ExcelToTxt | &quot; &amp;&#xD;&#xA;reportCode &amp; reportType &amp;&#xD;&#xA;&quot; | File=&quot; &amp; filePath &amp;&#xD;&#xA;&quot; | Output=&quot; &amp; outputFolder]" />
+        <Sequence DisplayName="Process ExcelToTxt" sap:VirtualizedContainerService.HintSize="450.2857142857143,605.1428571428571" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,176.57142857142858" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;CALL ExcelToTxt | &quot; &amp;&#xA;reportCode &amp; reportType &amp;&#xA;&quot; | File=&quot; &amp; filePath &amp;&#xA;&quot; | Output=&quot; &amp; outputFolder]" />
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="ExcelToTxt - Invoke Workflow File (Process\ExcelToTxt.xaml)" sap:VirtualizedContainerService.HintSize="416,178.28571428571428" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Process\ExcelToTxt.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_P01Mapping" />
+              <InArgument x:TypeArguments="x:String" x:Key="in_FilePath">[filePath]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_OutputFolder">[outputFolder]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_KodeLembaga">[kodeLembaga]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_KodeSegmen">[kodeSegmen]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_KodeLaporan">[reportCode]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_KolomOperasi">[kolomOperasi]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_ReplaceRule">[replaceRule]</InArgument>
+              <InArgument x:TypeArguments="x:Boolean" x:Key="in_RemoveNoColumn">[removeNoColumn]</InArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_OutputFilePath">[outputFilePath]</OutArgument>
+              <OutArgument x:TypeArguments="x:Int32" x:Key="out_RowCount">[rowCount]</OutArgument>
+              <OutArgument x:TypeArguments="x:Boolean" x:Key="out_IsSuccess">[isSuccess]</OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_ErrorMessage">[errorMessage]</OutArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,167.42857142857142" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;RESULT ExcelToTxt | &quot; &amp;&#xD;&#xA;reportCode &amp; reportType &amp;&#xD;&#xA;&quot; | Success=&quot; &amp; isSuccess.ToString &amp;&#xD;&#xA;&quot; | Output=&quot; &amp; outputFilePath &amp;&#xD;&#xA;&quot; | Error=&quot; &amp; If(errorMessage Is Nothing, &quot;&quot;, errorMessage)]" />
+        </Sequence>
+      </Sequence>
+      <Sequence x:Key="F01Handler" DisplayName="Case" sap:VirtualizedContainerService.HintSize="484.57142857142856,312" sap2010:WorkflowViewState.IdRef="Sequence_4">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <Sequence DisplayName="Process F01" sap:VirtualizedContainerService.HintSize="450.2857142857143,252" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="F01Handler - Invoke Workflow File (Process\F01Handler.xaml)" sap:VirtualizedContainerService.HintSize="416,169.14285714285714" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Process\F01Handler.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:Boolean" x:Key="in_FormatSukuBunga">[formatSukuBunga]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_KolomSukuBunga">suku_bunga</InArgument>
+              <InArgument x:TypeArguments="x:Boolean" x:Key="in_StripMinus">[stripMinus]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_FilePath">[filePath]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_OutputFolder">[outputFolder]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_KodeLembaga">[kodeLembaga]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_KodeSegmen">[kodeSegmen]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_KodeLaporan">[reportCode]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_KolomOperasi">[kolomOperasi]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_ReplaceRule">[replaceRule]</InArgument>
+              <InArgument x:TypeArguments="x:Boolean" x:Key="in_RemoveNoColumn">[removeNoColumn]</InArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_OutputFilePath">[outputFilePath]</OutArgument>
+              <OutArgument x:TypeArguments="x:Int32" x:Key="out_RowCount">[rowCount]</OutArgument>
+              <OutArgument x:TypeArguments="x:Boolean" x:Key="out_IsSuccess">[isSuccess]</OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="out_ErrorMessage">[errorMessage]</OutArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+        </Sequence>
+      </Sequence>
+    </Switch>
+    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="486.85714285714283,176.57142857142858" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
+    <ui:Comment DisplayName="Comment (placeholder)" sap:VirtualizedContainerService.HintSize="486.85714285714283,79.42857142857143" sap2010:WorkflowViewState.IdRef="Comment_1" Text="//  Invoke steps of the process" />
+  </Sequence>
+</Activity>

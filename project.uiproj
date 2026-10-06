@@ -1,0 +1,6 @@
+{
+  "Name": "Excel_to_Txt_REFramework",
+  "ProjectType": "Process",
+  "Description": "Excel to Txt Converter with REFramework",
+  "MainFile": "Main.xaml"
+}
